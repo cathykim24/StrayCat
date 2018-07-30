@@ -29,11 +29,11 @@ public class take_photo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.load_pic);
+        setContentView(R.layout.activity_main);
     }
 
     //로드버튼 클릭시 실행
-    public void takePhoto() {
+    public void takePhoto(View view) {
         //Intent 생성
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //ACTION_PIC과 차이점?
         String url = "tmp_"+String.valueOf(System.currentTimeMillis())+".jpg";
@@ -50,14 +50,12 @@ public class take_photo extends AppCompatActivity {
             //이미지를 하나 골랐을때
             if (requestCode == PICK_FROM_CAMERA && resultCode == RESULT_OK && null != data) {
 
-                Intent intent = new Intent("com.android.camera.action.CROP");
-                intent.setDataAndType(mImageCaptureUri, "image/*");
 
 //                //이미지가 한계이상(?) 크면 불러 오지 못하므로 사이즈를 줄여 준다.
 //                int nh = (int) (bitmap.getHeight() * (1024.0 / bitmap.getWidth()));
 //                Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 1024, nh, true);
 //
-//                imgView = (ImageView) findViewById(R.id.imageView);
+                imgView = (ImageView) findViewById(R.id.imageView);
 //                imgView.setImageBitmap(scaled);
 
 
