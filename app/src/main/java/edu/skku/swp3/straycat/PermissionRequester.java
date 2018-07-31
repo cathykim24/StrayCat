@@ -12,9 +12,6 @@ import android.widget.Toast;
 import static android.support.v4.app.ActivityCompat.shouldShowRequestPermissionRationale;
 import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
-/**
- * Created by 206-020 on 2016-06-13.
- */
 public class PermissionRequester {
 
     public static final int NOT_SUPPORT_VERSION = 2;
