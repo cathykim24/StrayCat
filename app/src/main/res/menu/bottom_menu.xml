@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_recents"
+        android:icon="@drawable/ic_add_to_queue_black_24dp"
+        android:title="feed" />
+
+    <item
+        android:id="@+id/action_favorites"
+        android:icon="@drawable/ic_add_to_photos_black_24dp"
+        android:title="photo" />
+
+    <item
+        android:id="@+id/action_explore"
+        android:icon="@drawable/ic_brightness_low_black_24dp"
+        android:title="brightness" />
+</menu>
