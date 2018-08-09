@@ -23,7 +23,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-<<<<<<< HEAD
+
             </intent-filter>
         </activity>
         <provider
@@ -36,9 +36,7 @@
                 android:resource="@xml/file_paths"
                 />
         </provider>
-=======
-            </intent-filter></activity>
->>>>>>> donation finishgit add -Agit add -Agit add -A!
+
     </application>
 
 </manifest>
