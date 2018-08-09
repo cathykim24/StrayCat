@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_recents"
-        android:icon="@drawable/ic_add_to_queue_black_24dp"
-        android:title="feed" />
+        android:id="@+id/nav_feed"
+        android:title="Feed"
+        android:icon="@drawable/list_icon"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/nav_map"
+        android:title="Map"
+        android:icon="@drawable/map"
+        app:showAsAction="never"/>
 
     <item
-        android:id="@+id/action_favorites"
-        android:icon="@drawable/ic_add_to_photos_black_24dp"
-        android:title="photo" />
+        android:id="@+id/nav_plus"
+        android:title="Plus"
+        android:icon="@drawable/plus"
+        app:showAsAction="never"/>
 
     <item
-        android:id="@+id/action_explore"
-        android:icon="@drawable/ic_brightness_low_black_24dp"
-        android:title="brightness" />
+        android:id="@+id/nav_donation"
+        android:title="Donation"
+        android:icon="@drawable/donation"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/nav_setting"
+        android:title="Setting"
+        android:icon="@drawable/setting"
+        app:showAsAction="never"/>
+
+
 </menu>

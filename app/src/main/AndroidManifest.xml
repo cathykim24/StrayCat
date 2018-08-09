@@ -9,16 +9,21 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/main_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+        </activity>
+        <activity
+            android:name=".TabActivity"
+            android:label="@string/title_activity_tab">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+<<<<<<< HEAD
             </intent-filter>
         </activity>
         <provider
@@ -31,6 +36,9 @@
                 android:resource="@xml/file_paths"
                 />
         </provider>
+=======
+            </intent-filter></activity>
+>>>>>>> donation finishgit add -Agit add -Agit add -A!
     </application>
 
 </manifest>

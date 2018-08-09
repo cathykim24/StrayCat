@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.photo_function);
 
         load_photo = (Button) findViewById(R.id.buttonLoadPic);
@@ -74,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         checkPermission();
+=======
+        setContentView(R.layout.load_pic); // 내부적으로 inflate 호출 ->
+>>>>>>> donation finishgit add -Agit add -Agit add -A!
     }
 
     private void captureCamera() {
