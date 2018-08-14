@@ -1,5 +1,6 @@
 package edu.skku.swp3.straycat;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 

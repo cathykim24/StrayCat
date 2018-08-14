@@ -12,7 +12,16 @@
     <Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"></Toolbar>
+        android:background="@color/colorPrimary">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="캐시 내역"
+            android:textColor="#000000"
+            android:textSize="27sp"
+            android:gravity="center_horizontal"
+            />
+    </Toolbar>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

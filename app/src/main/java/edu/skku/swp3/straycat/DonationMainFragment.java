@@ -38,10 +38,8 @@ public class DonationMainFragment extends Fragment {
         fragmentMap.put(R.id.cv_snack_donation, donationSnackFragment);
 
         //어댑터에 임시 데이터 넣기
-        historyList.add(new CashHistory("캐시충전", 500));
-        historyList.add(new CashHistory("간식후원", -8));
-        historyList.add(new CashHistory("간식후원", -23));
-        historyList.add(new CashHistory("간식후원", -2));
+        historyList.add(new CashHistory("캐시충전", 100));
+
     }
 
     @Nullable
@@ -64,7 +62,7 @@ public class DonationMainFragment extends Fragment {
                     nextFragment.setArguments(bundle);
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.addToBackStack(null);
-                    transaction.add(R.id.fragment, nextFragment);
+                    transaction.add(R.id.nav_fragment, nextFragment);
                     transaction.commit();
                 }
             });
