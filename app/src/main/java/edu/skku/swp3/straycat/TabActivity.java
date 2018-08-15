@@ -64,12 +64,14 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
 
             switch (item.getItemId()) {
                 case R.id.nav_feed:
+                    transaction.replace(R.id.nav_fragment, new PostFragment(), "feed_main");
                     return true;
                 case R.id.nav_map:
 //                    transaction.replace(R.id.nav_fragment, new MapsActivity(), "map");
                     return true;
                 case R.id.nav_plus:
-
+                    Intent intent = new Intent(TabActivity.this, ShareActivity.class);
+                    startActivity(intent);
                     return true;
                 case R.id.nav_donation:
                     transaction.replace(R.id.nav_fragment, new DonationMainFragment(), "donation_main");

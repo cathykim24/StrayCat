@@ -84,12 +84,14 @@ public class GalleryFragment extends Fragment {
     }
 
     private boolean isRootTask(){
-        if(((ShareActivity)getActivity()).getTask() == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+//        if(((ShareActivity)getActivity()).getTask() == 0){
+//            return true;
+//        }
+//        else{
+//            return false;
+//        }
+        //todo: 문제 생기면 보기
+        return true;
     }
 
     private void init(){

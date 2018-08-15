@@ -20,6 +20,8 @@ public class NextActivity extends AppCompatActivity {
     private static final String TAG = "NextActivity";
     Context context = this;
 
+    PostActivity postActivity;
+
     //widgets
     private EditText mCaption;
 
@@ -60,6 +62,8 @@ public class NextActivity extends AppCompatActivity {
                     bitmap = (Bitmap) intent.getParcelableExtra("selected_bitmap");
                 }
 
+                //postActivity.addData();
+                //todo: 데이터 추가되는거 만들기
                 //back to home
                 Intent intent = new Intent (context, PostActivity.class);
                 context.startActivity(intent);

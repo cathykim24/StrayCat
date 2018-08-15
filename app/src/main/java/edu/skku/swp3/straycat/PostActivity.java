@@ -3,15 +3,20 @@ package edu.skku.swp3.straycat;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class PostActivity extends AppCompatActivity {
+public class PostActivity extends Fragment {
 
     ArrayList<PostItem> list = new ArrayList<>();
     ArrayList<PostItem> listItem = new ArrayList<>();
@@ -23,17 +28,20 @@ public class PostActivity extends AppCompatActivity {
     Context context;
 
     @Override
-    protected void onCreate(Bundle bundle){
-        super.onCreate(bundle);
-        setContentView(R.layout.feed_layout);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState){
+        return inflater.inflate(R.layout.feed_layout, container, false);
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
 
-        context = this;
+        context = getActivity();
+        comment = (ImageView) getView().findViewById(R.id.speech_bubble);
 
-        comment = (ImageView) findViewById(R.id.speech_bubble);
-
-        recyclerView  = (RecyclerView) findViewById(R.id.rv_list);
+        recyclerView  = (RecyclerView) getView().findViewById(R.id.rv_list);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
 
@@ -59,6 +67,12 @@ public class PostActivity extends AppCompatActivity {
         for(PostItem postItem : listItem){
             list.add(postItem);
         }
+        adapter.notifyDataSetChanged();
+    }
+
+    public void addData(){
+        listItem.add(new PostItem(false, 0, "hyewonnii", R.drawable.e,
+                "성균관대에서 길냥이를 만났어요", "hyewonnii", R.drawable.cc));
         adapter.notifyDataSetChanged();
     }
 }
