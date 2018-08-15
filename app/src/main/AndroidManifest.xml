@@ -29,19 +29,19 @@
         <activity
             android:name=".PostActivity"
             >
+        </activity>
+        <activity android:name=".TabActivity"
+                android:label="@string/title_activity_tab">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TabActivity"
-                android:label="@string/title_activity_tab"/>
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".LikesActivity"></activity>
         <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".HomeActivity">
-        </activity>
+        <activity android:name=".HomeActivity"></activity>
         <activity android:name=".ShareActivity"></activity>
 
 
@@ -65,7 +65,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/AIzaSyCMygYdL8_6Xu2ynp6i0VQIBj_9pg4yQEI" />
+            android:value="AIzaSyCMygYdL8_6Xu2ynp6i0VQIBj_9pg4yQEI" />
 
         <activity
             android:name=".MapsActivity"

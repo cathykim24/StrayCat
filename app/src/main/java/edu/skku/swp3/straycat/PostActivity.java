@@ -8,12 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class PostActivity extends AppCompatActivity {
-
     ArrayList<PostItem> list = new ArrayList<>();
     ArrayList<PostItem> listItem = new ArrayList<>();
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     PostAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle bundle){
