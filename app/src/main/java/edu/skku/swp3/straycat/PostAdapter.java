@@ -1,6 +1,7 @@
 package edu.skku.swp3.straycat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,8 +16,13 @@ public class PostAdapter extends RecyclerView.Adapter<postViewHolder> {
     private Context context;
     private ArrayList<PostItem> postItems;
 
-    public PostAdapter(ArrayList<PostItem> context){
-        this.postItems = context;
+    public PostAdapter(ArrayList<PostItem> postItem){
+        this.postItems = postItem;
+    }
+
+    public PostAdapter(ArrayList<PostItem> postItem, Context context){
+        this.postItems = postItem;
+        this.context = context;
     }
 
     @Override
@@ -43,7 +49,6 @@ public class PostAdapter extends RecyclerView.Adapter<postViewHolder> {
     public int getItemCount() {
         return postItems.size();
     }
-
 
     public void onLikeClicked(int position) {
         PostItem item = postItems.get(position);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="@color/white">
 
@@ -19,9 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relLayout1"
-        android:layout_toRightOf="@+id/comment_profile_image"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/grey_border_bottom">
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="15dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -44,10 +43,11 @@
                 android:id="@+id/comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_alignStart="@+id/comment_username"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
                 android:layout_centerVertical="true"
-                android:text="우와 진짜 대박 귀엽당ㅠㅠ"
+                android:text="우와 진짜 대박 귀엽당ㅠㅠ
+"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -59,9 +59,9 @@
                 android:textColor="@color/grey"
                 android:textSize="14sp"
                 android:id="@+id/comment_time_posted"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="85dp"
                 android:layout_marginLeft="15dp"
-                android:layout_below="@+id/comment"/>
+                />
 
         </RelativeLayout>
 

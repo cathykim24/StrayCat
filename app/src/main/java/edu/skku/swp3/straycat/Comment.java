@@ -4,18 +4,23 @@ import java.util.List;
 
 public class Comment {
 
-    private String comment;
-    private String user_id;
-    private String date_created;
+    String comment;
+    String user_id;
+    String date_created;
+    int profileImgUri;
 
-    public Comment() {
-
-    }
-
-    public Comment(String comment, String user_id, String date_created) {
+    public Comment(String comment, String user_id, String date_created, int profileImgUri) {
         this.comment = comment;
         this.user_id = user_id;
         this.date_created = date_created;
+        this.profileImgUri = profileImgUri;
+    }
+    public int getProfileImgUri() {
+        return profileImgUri;
+    }
+
+    public void setProfileImgUri(int profileImgUri) {
+        this.profileImgUri = profileImgUri;
     }
 
     public String getComment() {
@@ -42,12 +47,4 @@ public class Comment {
         this.date_created = date_created;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "comment='" + comment + '\'' +
-                ", user_id='" + user_id + '\'' +
-                ", date_created='" + date_created + '\'' +
-                '}';
-    }
 }
