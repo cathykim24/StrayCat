@@ -20,7 +20,7 @@ public class DonationCo_SponsorFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.donation_snack, container, false);
+        View rootView = inflater.inflate(R.layout.donation_co_sponsor, container, false);
         recyclerViewSnack = rootView.findViewById(R.id.recyler_view_snack);
 
         snackItemViewModel  = ViewModelProviders.of(getActivity()).get(SnackItemViewModel.class);

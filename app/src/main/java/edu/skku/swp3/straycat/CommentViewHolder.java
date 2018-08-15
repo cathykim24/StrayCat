@@ -19,7 +19,6 @@ public class CommentViewHolder extends RecyclerView.ViewHolder implements View.O
     public ImageView comment_profile_img;
     public TextView comment_time_posted;
 
-    public ImageView input_comment_finished;
 
     public CommentViewHolder(View itemView, final CommentAdapter commentAdapter) {
         super(itemView);
@@ -30,10 +29,10 @@ public class CommentViewHolder extends RecyclerView.ViewHolder implements View.O
         comment = (TextView) itemView.findViewById(R.id.comment);
         comment_time_posted = (TextView) itemView.findViewById(R.id.comment_time_posted);
 
-        input_comment_finished = (ImageView) itemView.findViewById(R.id.ivPostComment);
+
 
 //        input_comment_finished.setOnClickListener(this);
-//
+
 //        input_comment_finished.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

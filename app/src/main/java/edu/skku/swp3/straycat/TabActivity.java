@@ -2,41 +2,26 @@ package edu.skku.swp3.straycat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-
-import android.app.Activity;
-import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.location.Location;
-
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -45,15 +30,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import static java.security.AccessController.getContext;
+import java.util.HashMap;
 
 public class TabActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    private FragmentManager fragmentManager;
     private View fragmentHolder;
     private final SupportMapFragment supportMapFragment = new SupportMapFragment();
     private final DonationMainFragment donationMainFragment = new DonationMainFragment();
     private static final int MY_LOCATION_REQUEST_CODE = 11;
     private GoogleMap mMap;
+
+    private HashMap<String, ArrayList<CatListItem>> catListMap = new HashMap<>();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -61,20 +49,25 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
+            Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.nav_feed:
-                    transaction.replace(R.id.nav_fragment, new PostFragment(), "feed_main");
+                    transaction.replace(R.id.nav_fragment, new PostFragment(), "feed_main").commit();
                     return true;
                 case R.id.nav_map:
-//                    transaction.replace(R.id.nav_fragment, new MapsActivity(), "map");
+                    fragment = fragmentManager.findFragmentByTag("map");
+                    if (fragment == null) {
+                        transaction.add(R.id.nav_fragment, supportMapFragment, "map").commit();
+                    } else {
+                        transaction.replace(R.id.nav_fragment, fragment, "map").commit();
+                    }
                     return true;
                 case R.id.nav_plus:
                     Intent intent = new Intent(TabActivity.this, ShareActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.nav_donation:
-                    transaction.replace(R.id.nav_fragment, new DonationMainFragment(), "donation_main");
+                    transaction.replace(R.id.nav_fragment, donationMainFragment, "donation_main").commit();
                     return true;
                 case R.id.nav_setting:
                     return true;
@@ -90,13 +83,14 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        fragmentManager = getSupportFragmentManager();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         fragmentHolder = findViewById(R.id.nav_fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.addToBackStack(null);
-        transaction.add(R.id.nav_fragment, new DonationMainFragment());
+        transaction.add(R.id.nav_fragment, new PostFragment());
         transaction.commit();
         removeShiftMode(navigation);
 
@@ -108,6 +102,7 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
         }
 
         supportMapFragment.getMapAsync(this);
+
     }
 
 
@@ -157,6 +152,7 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
 //       ArrayList<Marker> markers = new ArrayList<Marker>();
         LatLng center = new LatLng(36.427397, 128.064719);
@@ -192,14 +188,31 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
         test.setVisible(true);
 
 
+        ArrayList<CatListItem> catList = new ArrayList<>();
+        catList.add(new CatListItem(R.drawable.cat_image1,"성균관대 신관 A동 앞","러시안 블루"));
+        catList.add(new CatListItem(R.drawable.cat_image2,"호매실도서관 앞","터키쉬 앙고라"));
+
+        catListMap.put(test.getId(), catList);
+
+        Log.d("TabActivity", " " + test.getId());
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(center));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(center, 7));
         mMap.getUiSettings().setZoomControlsEnabled(true);
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                TabActivity.this.onInfoWindowClick(marker);
+            }
+        });
+    }
+    public void onInfoWindowClick(Marker marker) {
+        ArrayList<CatListItem> catList = catListMap.get(marker.getId());
+        Intent intent = new Intent(this, CatListActivity.class);
+        Log.d("TabActivity", " " + marker.getId());
+        intent.putExtra("catList", catList);
+        startActivity(intent);
     }
 
-    public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(this, "Info window clicked",
-                Toast.LENGTH_SHORT).show();
-    }
 
 }

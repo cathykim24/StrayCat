@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+
 public class PostActivity extends Fragment {
 
     ArrayList<PostItem> list = new ArrayList<>();
@@ -26,6 +27,7 @@ public class PostActivity extends Fragment {
     ImageView comment;
 
     Context context;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

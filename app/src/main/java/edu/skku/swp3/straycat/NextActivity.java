@@ -65,7 +65,7 @@ public class NextActivity extends AppCompatActivity {
                 //postActivity.addData();
                 //todo: 데이터 추가되는거 만들기
                 //back to home
-                Intent intent = new Intent (context, PostActivity.class);
+                Intent intent = new Intent (context, TabActivity.class);
                 context.startActivity(intent);
             }
         });
