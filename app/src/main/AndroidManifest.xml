@@ -27,7 +27,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".PostActivity"
+            android:name=".TabActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TabActivity"
+        <activity android:name=".PostActivity"
                 android:label="@string/title_activity_tab"/>
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".LikesActivity"></activity>

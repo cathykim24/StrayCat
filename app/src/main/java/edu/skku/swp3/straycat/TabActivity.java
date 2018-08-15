@@ -19,6 +19,7 @@ import java.lang.reflect.Field;
 public class TabActivity extends AppCompatActivity {
 
     private View fragmentHolder;
+    private TabActivity tabActivity;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -29,7 +30,10 @@ public class TabActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_feed:
-                    return true;
+                    Intent intent1 = new Intent(tabActivity, PostActivity.class);//ACTIVITY_NUM = 0
+                    tabActivity.startActivity(intent1);
+                    finish();
+                    break;
                 case R.id.nav_map:
 //                    transaction.replace(R.id.nav_fragment, new MapsActivity(), "map");
                     return true;
