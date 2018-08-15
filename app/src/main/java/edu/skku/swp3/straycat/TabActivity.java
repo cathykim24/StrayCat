@@ -1,7 +1,8 @@
 package edu.skku.swp3.straycat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
-<<<<<<< HEAD
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -11,9 +12,9 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
-=======
+
 import android.content.Intent;
->>>>>>> e25a72407534706df4580c0c75f36cb21b770a77
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -21,12 +22,13 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< HEAD
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,19 +41,19 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.ui.IconGenerator;
-=======
->>>>>>> e25a72407534706df4580c0c75f36cb21b770a77
+
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
 import static java.security.AccessController.getContext;
 
-public class TabActivity extends AppCompatActivity {
+public class TabActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private View fragmentHolder;
-    private TabActivity tabActivity;
+    private final SupportMapFragment supportMapFragment = new SupportMapFragment();
+    private final DonationMainFragment donationMainFragment = new DonationMainFragment();
+    private static final int MY_LOCATION_REQUEST_CODE = 11;
+    private GoogleMap mMap;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -62,10 +64,7 @@ public class TabActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_feed:
-                    Intent intent1 = new Intent(tabActivity, PostActivity.class);//ACTIVITY_NUM = 0
-                    tabActivity.startActivity(intent1);
-                    finish();
-                    break;
+                    return true;
                 case R.id.nav_map:
 //                    transaction.replace(R.id.nav_fragment, new MapsActivity(), "map");
                     return true;
@@ -98,7 +97,6 @@ public class TabActivity extends AppCompatActivity {
         transaction.add(R.id.nav_fragment, new DonationMainFragment());
         transaction.commit();
         removeShiftMode(navigation);
-<<<<<<< HEAD
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -109,6 +107,8 @@ public class TabActivity extends AppCompatActivity {
 
         supportMapFragment.getMapAsync(this);
     }
+
+
 
     @SuppressLint("MissingPermission")
     @Override
@@ -125,10 +125,7 @@ public class TabActivity extends AppCompatActivity {
     }
 
 
-=======
-    }
 
->>>>>>> e25a72407534706df4580c0c75f36cb21b770a77
     @Override
     public void onBackPressed() {
         getSupportFragmentManager().popBackStackImmediate();
@@ -157,15 +154,11 @@ public class TabActivity extends AppCompatActivity {
         }
     }
 
-<<<<<<< HEAD
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 //       ArrayList<Marker> markers = new ArrayList<Marker>();
         LatLng center = new LatLng(36.427397, 128.064719);
         LatLng testMarker = new LatLng(37.553042, 126.986792);
-
-
-
 
         Marker test = mMap.addMarker(new MarkerOptions()
                 .position(testMarker)
@@ -206,6 +199,5 @@ public class TabActivity extends AppCompatActivity {
         Toast.makeText(this, "Info window clicked",
                 Toast.LENGTH_SHORT).show();
     }
-=======
->>>>>>> e25a72407534706df4580c0c75f36cb21b770a77
+
 }

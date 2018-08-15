@@ -13,25 +13,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-
-/**
- * Created by User on 5/28/2017.
- */
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ShareActivity extends AppCompatActivity {
+    private static final String TAG = "ShareActivity";
 
     //constants
     private static final int ACTIVITY_NUM = 2;
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
 
     private ViewPager mViewPager;
+
+
     private Context mContext = ShareActivity.this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
-        Log.d("ShareActivity", "onCreate: started.");
+        Log.d(TAG, "onCreate: started.");
+
+        initImageLoader();
 
         if(checkPermissionsArray(Permissions.PERMISSIONS)){
             setupViewPager();
@@ -43,12 +45,18 @@ public class ShareActivity extends AppCompatActivity {
 
     /**
      * return the current tab number
-     * 0 = GalleryFragment 1 = PhotoFragment
+     * 0 = GalleryFragment
+     * 1 = PhotoFragment
+     * @return
      */
     public int getCurrentTabNumber(){
         return mViewPager.getCurrentItem();
     }
 
+    private void initImageLoader(){
+        UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
+    }
     /**
      * setup viewpager for manager the tabs
      */
@@ -69,7 +77,7 @@ public class ShareActivity extends AppCompatActivity {
     }
 
     public int getTask(){
-        Log.d("ShareActivity", "getTask: TASK: " + getIntent().getFlags());
+        Log.d(TAG, "getTask: TASK: " + getIntent().getFlags());
         return getIntent().getFlags();
     }
 
@@ -78,7 +86,7 @@ public class ShareActivity extends AppCompatActivity {
      * @param permissions
      */
     public void verifyPermissions(String[] permissions){
-        Log.d("ShareActivity", "verifyPermissions: verifying permissions.");
+        Log.d(TAG, "verifyPermissions: verifying permissions.");
 
         ActivityCompat.requestPermissions(
                 ShareActivity.this,
@@ -93,7 +101,7 @@ public class ShareActivity extends AppCompatActivity {
      * @return
      */
     public boolean checkPermissionsArray(String[] permissions){
-        Log.d("ShareActivity", "checkPermissionsArray: checking permissions array.");
+        Log.d(TAG, "checkPermissionsArray: checking permissions array.");
 
         for(int i = 0; i< permissions.length; i++){
             String check = permissions[i];
@@ -110,18 +118,17 @@ public class ShareActivity extends AppCompatActivity {
      * @return
      */
     public boolean checkPermissions(String permission){
-        Log.d("ShareActivity", "checkPermissions: checking permission: " + permission);
+        Log.d(TAG, "checkPermissions: checking permission: " + permission);
 
         int permissionRequest = ActivityCompat.checkSelfPermission(ShareActivity.this, permission);
 
         if(permissionRequest != PackageManager.PERMISSION_GRANTED){
-            Log.d("ShareActivity", "checkPermissions: \n Permission was not granted for: " + permission);
+            Log.d(TAG, "checkPermissions: \n Permission was not granted for: " + permission);
             return false;
         }
         else{
-            Log.d("ShareActivity", "checkPermissions: \n Permission was granted for: " + permission);
+            Log.d(TAG, "checkPermissions: \n Permission was granted for: " + permission);
             return true;
         }
     }
-
 }
