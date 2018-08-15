@@ -2,7 +2,14 @@ package edu.skku.swp3.straycat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,18 +23,27 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.ui.IconGenerator;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+
+import static java.security.AccessController.getContext;
 
 
 public class TabActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -91,6 +107,7 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
 
         supportMapFragment.getMapAsync(this);
     }
+
     @SuppressLint("MissingPermission")
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -104,7 +121,6 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         }
     }
-
 
 
     @Override
@@ -137,15 +153,50 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng korea = new LatLng( -122.0840, 37.0000);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(korea));
+//       ArrayList<Marker> markers = new ArrayList<Marker>();
+        LatLng center = new LatLng(36.427397, 128.064719);
+        LatLng testMarker = new LatLng(37.553042, 126.986792);
 
 
 
 
+        Marker test = mMap.addMarker(new MarkerOptions()
+                .position(testMarker)
+                .title("5")
+                .snippet("15")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.dot)));
+
+
+
+//        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(37.275774, 127.010741))
+//        .title("mark2")));
+//        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(35.160694, 129.066059))
+//        .title("mark3")));
+//        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(35.155051, 126.829565))
+//        .title("mark4")));
+//        markers.add(mMap.addMarker(new MarkerOptions().position(new LatLng(37.548287, 128.483212))
+//        .title("mark5")));
+
+//        for (Marker marker : markers) {
+//            marker.setVisible(true);
+//
+//            //marker.remove(); <-- works too!
+//        }
+
+        CustomInfoWindowAdapter adapter = new CustomInfoWindowAdapter(TabActivity.this);
+        mMap.setInfoWindowAdapter(adapter);
+
+        test.showInfoWindow();
+        test.setVisible(true);
+
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(center));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(center, 7));
+        mMap.getUiSettings().setZoomControlsEnabled(true);
     }
 
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this, "Info window clicked",
+                Toast.LENGTH_SHORT).show();
+    }
 }
