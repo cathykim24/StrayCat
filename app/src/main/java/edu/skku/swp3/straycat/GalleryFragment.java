@@ -1,5 +1,6 @@
 package edu.skku.swp3.straycat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -17,8 +18,11 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
@@ -58,27 +62,21 @@ public class GalleryFragment extends Fragment {
             }
         });
 
-//
-//        TextView nextScreen = (TextView) view.findViewById(R.id.tvNext);
-//        nextScreen.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "onClick: navigating to the final share screen.");
-//
-//                if(isRootTask()){
-//                    Intent intent = new Intent(getActivity(), NextActivity.class);
-//                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
-//                    startActivity(intent);
-//                }else{
-//                    Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
-//                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
-//                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile_fragment));
-//                    startActivity(intent);
-//                    getActivity().finish();
-//                }
-//
-//            }
-//        });
+
+        TextView nextScreen = (TextView) view.findViewById(R.id.tvNext_btn);
+        nextScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating to the final share screen.");
+                Intent intent = new Intent(getActivity(), NextActivity.class);
+                intent.putExtra("selected_image", mSelectedImage);
+                startActivity(intent);
+                if(isRootTask()){
+
+                }
+
+            }
+        });
 
         init();
 
@@ -164,6 +162,7 @@ public class GalleryFragment extends Fragment {
         });
 
     }
+
 
 
     private void setImage(String imgURL, ImageView image, String append){

@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 public class PhotoFragment extends Fragment {
     private static final String TAG = "PhotoFragment";
 
@@ -19,7 +21,6 @@ public class PhotoFragment extends Fragment {
     private static final int PHOTO_FRAGMENT_NUM = 1;
     private static final int GALLERY_FRAGMENT_NUM = 2;
     private static final int  CAMERA_REQUEST_CODE = 5;
-
 
     @Nullable
     @Override
@@ -69,29 +70,9 @@ public class PhotoFragment extends Fragment {
 
             Bitmap bitmap;
             bitmap = (Bitmap) data.getExtras().get("data");
-
-//            if(isRootTask()){
-//                try{
-//                    Log.d(TAG, "onActivityResult: received new bitmap from camera: " + bitmap);
-//                    Intent intent = new Intent(getActivity(), NextActivity.class);
-//                    intent.putExtra(getString(R.string.selected_bitmap), bitmap);
-//                    startActivity(intent);
-//                }catch (NullPointerException e){
-//                    Log.d(TAG, "onActivityResult: NullPointerException: " + e.getMessage());
-//                }
-//            }else{
-//               try{
-//                   Log.d(TAG, "onActivityResult: received new bitmap from camera: " + bitmap);
-//                   Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
-//                   intent.putExtra(getString(R.string.selected_bitmap), bitmap);
-//                   intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile_fragment));
-//                   startActivity(intent);
-//                   getActivity().finish();
-//               }catch (NullPointerException e){
-//                   Log.d(TAG, "onActivityResult: NullPointerException: " + e.getMessage());
-//               }
-//            }
-
+            Intent intent = new Intent(getActivity(), NextActivity.class);
+            intent.putExtra("selected_bitmap", bitmap);
+            startActivity(intent);
         }
     }
 }

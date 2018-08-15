@@ -1,5 +1,4 @@
 package edu.skku.swp3.straycat;
-
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,45 +6,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 public class CatListAdapter extends RecyclerView.Adapter {
-    private ArrayList<CatList> CatList = null;
-
-    public CatListAdapter(ArrayList<edu.skku.swp3.straycat.CatList> catList) {
-        this.CatList = CatList;
+    private ArrayList<CatListItem> catListItem = null;
+    public CatListAdapter(ArrayList<CatListItem> catListItem) {
+        this.catListItem = catListItem;
     }
-
-    public void addItem(CatList newItem){
-        CatList.add(newItem);
+    public void addItem(CatListItem newItem){
+        catListItem.add(newItem);
         notifyDataSetChanged();
     }
-
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_catlist, parent, false);
         return new CatListViewHolder(itemView);
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        CatList catList = CatList.get(position);
+        CatListItem catListItem = this.catListItem.get(position);
         CatListAdapter.CatListViewHolder viewHolder = (CatListAdapter.CatListViewHolder)holder;
-
-        viewHolder.ivCatImage.setImageResource(catList.imageResId);
-        viewHolder.tvCatAddress.setText(catList.catAddress);
-        viewHolder.tvCatSpecies.setText(catList.catSpecies);
-
+        viewHolder.ivCatImage.setImageResource(catListItem.imageResId);
+        viewHolder.tvCatAddress.setText(catListItem.catAddress);
+        viewHolder.tvCatSpecies.setText(catListItem.catSpecies);
     }
-
     @Override
     public int getItemCount() {
-        return CatList.size();
+        return catListItem.size();
     }
-
     class CatListViewHolder extends RecyclerView.ViewHolder {
         TextView tvCatAddress,tvCatSpecies;
         ImageView ivCatImage;
