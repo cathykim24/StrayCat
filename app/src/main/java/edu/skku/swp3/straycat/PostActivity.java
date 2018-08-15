@@ -1,9 +1,13 @@
 package edu.skku.swp3.straycat;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -14,11 +18,18 @@ public class PostActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     PostAdapter adapter;
+    ImageView comment;
+
+    Context context;
 
     @Override
     protected void onCreate(Bundle bundle){
         super.onCreate(bundle);
         setContentView(R.layout.feed_layout);
+
+        context = this;
+
+        comment = (ImageView) findViewById(R.id.speech_bubble);
 
         recyclerView  = (RecyclerView) findViewById(R.id.rv_list);
         recyclerView.setHasFixedSize(true);
@@ -35,20 +46,12 @@ public class PostActivity extends AppCompatActivity {
         listItem.add(new PostItem(false, 352, "taegeunjjang", R.drawable.d,
                 " 엉엉 귀여워", "taegeunjjang", R.drawable.dd));
 
-        adapter = new PostAdapter(listItem);
+        adapter = new PostAdapter(listItem, context);
         recyclerView.setAdapter(adapter);
 
-        //        for(PostItem item4 : listItem){
-//            View view = View.inflate(this, R.layout.post_item, null);
-//            TextView tvUserName = (TextView) view.findViewById(R.id.username);
-//            TextView tvPostText = view.findViewById(R.id.posttext);
-//
-//            tvUserName.setText(item4.getUsername());
-//            tvPostText.setText(item4.getPostText());
-//        }
 
-//        View.inflate(this, R.layout.post_item, null);
-            setData();
+        setData();
+
     }
 
     private void setData(){

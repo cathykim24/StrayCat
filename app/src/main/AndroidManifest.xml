@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".PostActivity"/>
+        <activity android:name=".ShareActivity"/>
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".LikesActivity"></activity>
         <activity android:name=".ProfileActivity"></activity>
@@ -31,15 +31,14 @@
         <activity android:name=".HomeActivity"></activity>
         <activity android:name=".TabActivity"
             android:label="@string/title_activity_tab"></activity>
-        <activity android:name=".ShareActivity">
+
+        <activity android:name=".PostActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -58,6 +57,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
+        <activity android:name=".CommentActivity" />
     </application>
 
 </manifest>
