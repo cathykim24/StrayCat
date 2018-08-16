@@ -1,6 +1,7 @@
 package edu.skku.swp3.straycat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,8 @@ import android.view.ViewGroup;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
+
 public class ShareActivity extends AppCompatActivity {
     //constants
     private static final int ACTIVITY_NUM = 2;
@@ -27,6 +30,8 @@ public class ShareActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
     private Context mContext = this;
+
+    private ArrayList<CatListItem> catListItems;
 
     @Override
     public void onCreate(Bundle bundle) {

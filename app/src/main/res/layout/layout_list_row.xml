@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:padding="3dp"
+    android:background="#dddddd"
+    android:weightSum="20">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="15"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <TextView android:id="@+id/text_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:text="이름"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:background="#ffffff"
+            android:padding="3dp"/>
+
+        <TextView
+            android:id="@+id/text_place"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="3"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:padding="3dp"
+            android:text="주 위치" />
+
+        <TextView android:id="@+id/text_species"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:text="종"
+            android:gravity="center_vertical"
+            android:layout_marginTop="4dp"
+            android:background="#ffffff"
+            android:padding="3dp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_flag"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_weight="5"
+        android:background="#ffffff"
+        android:src="@drawable/cat_image1" />
+</LinearLayout>

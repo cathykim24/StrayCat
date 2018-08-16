@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,7 +40,11 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
     private final SupportMapFragment supportMapFragment = new SupportMapFragment();
     private final DonationMainFragment donationMainFragment = new DonationMainFragment();
     private static final int MY_LOCATION_REQUEST_CODE = 11;
+    private PostFragment postFragment;
     private GoogleMap mMap;
+    private int idx = 0;
+
+    private ListView listView;
 
     private HashMap<String, ArrayList<CatListItem>> catListMap = new HashMap<>();
 
@@ -64,7 +69,7 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
                     return true;
                 case R.id.nav_plus:
                     Intent intent = new Intent(TabActivity.this, ShareActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent,3000);
                     return true;
                 case R.id.nav_donation:
                     transaction.replace(R.id.nav_fragment, donationMainFragment, "donation_main").commit();
@@ -82,6 +87,8 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        listView = (ListView) findViewById(R.id.lv_tag_cat);
 
         fragmentManager = getSupportFragmentManager();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -189,8 +196,8 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
         ArrayList<CatListItem> catList = new ArrayList<>();
-        catList.add(new CatListItem(R.drawable.cat_image1,"성균관대 신관 A동 앞","러시안 블루"));
-        catList.add(new CatListItem(R.drawable.cat_image2,"호매실도서관 앞","터키쉬 앙고라"));
+        catList.add(new CatListItem(R.drawable.cat_image1,"성균관대 신관 A동 앞","러시안 블루","나비"));
+        catList.add(new CatListItem(R.drawable.cat_image2,"호매실도서관 앞","터키쉬 앙고라","디도냥이"));
 
         catListMap.put(test.getId(), catList);
 
@@ -213,6 +220,18 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
         intent.putExtra("catList", catList);
         startActivity(intent);
     }
-
+    // 처리된 결과 코드 (resultCode) 가 RESULT_OK 이면 requestCode 를 판별해 결과 처리를 진행한다.
+    // 전달준다.
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                // MainActivity 에서 요청할 때 보낸 요청 코드 (3000)
+                case 3000:
+                    postFragment.addData(data.getStringExtra("result"));
+                    break;
+            }
+        }
+    }
 
 }

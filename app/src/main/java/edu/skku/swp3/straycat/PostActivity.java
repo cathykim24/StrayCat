@@ -72,9 +72,9 @@ public class PostActivity extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void addData(){
+    public void addData(String caption){
         listItem.add(new PostItem(false, 0, "hyewonnii", R.drawable.e,
-                "성균관대에서 길냥이를 만났어요", "hyewonnii", R.drawable.cc));
+                caption, "hyewonnii", R.drawable.cc));
         adapter.notifyDataSetChanged();
     }
 }

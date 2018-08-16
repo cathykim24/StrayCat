@@ -3,6 +3,7 @@ package edu.skku.swp3.straycat;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -41,6 +42,7 @@ public class PostFragment extends Fragment {
     }
     @Override
     public void onStart(){
+
         super.onStart();
 
         context = getActivity();
@@ -64,8 +66,18 @@ public class PostFragment extends Fragment {
         adapter = new PostAdapter(listItem, context);
         recyclerView.setAdapter(adapter);
 
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            int idx = 0;
 
-        setData();
+            @Override
+            public void run() {
+                if(idx == 0){
+                    addData("성대에서 길냥이를 만났어요");
+                    idx = idx + 1;
+                }
+            }
+        }, 10000);
 
     }
     private void setData(){
@@ -76,9 +88,9 @@ public class PostFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void addData(){
-        listItem.add(new PostItem(false, 0, "hyewonnii", R.drawable.e,
-                "성균관대에서 길냥이를 만났어요", "hyewonnii", R.drawable.cc));
+    public void addData(String caption){
+        listItem.add(0,new PostItem(false, 0, "hyewonnii", R.drawable.cat_image1_wide,
+                caption, "hyewonnii", R.drawable.cc));
         adapter.notifyDataSetChanged();
     }
 

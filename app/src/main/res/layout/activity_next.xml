@@ -51,24 +51,35 @@
                     android:hint="우리 동네 고양이를
 자랑해보세요" />
 
-                <Button
-                    android:id="@+id/tag_map"
-                    android:layout_width="123dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="190dp"
-                    android:background="@drawable/white_grey_border"
-                    android:text="위치 태그하기" />
+                <!--<Button-->
+                    <!--android:id="@+id/tag_map"-->
+                    <!--android:layout_width="123dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginTop="190dp"-->
+                    <!--android:background="@drawable/white_grey_border"-->
+                    <!--android:text="위치 태그하기" />-->
 
                 <Button
                     android:layout_width="123dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="190dp"
-                    android:layout_toRightOf="@+id/tag_map"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/white_grey_border"
-                    android:text="고양이 태그하기" />
+                    android:id="@+id/btn_tagcat"
+                    android:text="고양이 태그하기"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/btn_tagcat"
+                    android:layout_marginTop="200dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tag_cat_name"
+                    android:maxLines="2"
+                    android:textSize="15sp"
+                    android:text="태그한 고양이 이름"/>
 
             </RelativeLayout>
 

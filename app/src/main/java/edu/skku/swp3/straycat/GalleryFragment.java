@@ -71,6 +71,7 @@ public class GalleryFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), NextActivity.class);
                 intent.putExtra("selected_image", mSelectedImage);
                 startActivity(intent);
+
                 if(isRootTask()){
 
                 }
