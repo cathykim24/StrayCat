@@ -31,6 +31,7 @@ public class PostFragment extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     PostAdapter adapter;
     ImageView comment;
+    int idx = 0;
 
     Context context;
 
@@ -66,18 +67,25 @@ public class PostFragment extends Fragment {
         adapter = new PostAdapter(listItem, context);
         recyclerView.setAdapter(adapter);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            int idx = 0;
+        event();
 
-            @Override
-            public void run() {
-                if(idx == 0){
-                    addData("성대에서 길냥이를 만났어요");
-                    idx = idx + 1;
+    }
+    private void event(){
+        this.idx = this.idx +1;
+        Log.d("여기",String.valueOf(this.idx));
+        if(this.idx == 1){
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    do {
+                        addData("성대에서 길냥이를 만났어요");
+                        Log.d("postfragment","들어왔다");
+                        break;
+                    }while (true);
                 }
-            }
-        }, 10000);
+            }, 20000);
+        }
 
     }
     private void setData(){
@@ -89,7 +97,7 @@ public class PostFragment extends Fragment {
     }
 
     public void addData(String caption){
-        listItem.add(0,new PostItem(false, 0, "hyewonnii", R.drawable.cat_image1_wide,
+        listItem.add(0,new PostItem(false, 0, "hyewonnii", R.drawable.cat_image111,
                 caption, "hyewonnii", R.drawable.cc));
         adapter.notifyDataSetChanged();
     }
