@@ -203,7 +203,7 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
 
         Log.d("TabActivity", " " + test.getId());
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(center));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(center, 7));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(testMarker, 10));
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
