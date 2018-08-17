@@ -33,6 +33,14 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import edu.skku.swp3.straycat.Donation.DonationMainFragment;
+import edu.skku.swp3.straycat.Map.CatListActivity;
+import edu.skku.swp3.straycat.Map.CatListItem;
+import edu.skku.swp3.straycat.Map.CustomInfoWindowAdapter;
+import edu.skku.swp3.straycat.Upload.ShareActivity;
+import edu.skku.swp3.straycat.Setting.Setting;
+import edu.skku.swp3.straycat.Feed.PostFragment;
+
 public class TabActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private FragmentManager fragmentManager;
@@ -75,6 +83,7 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
                     transaction.replace(R.id.nav_fragment, donationMainFragment, "donation_main").commit();
                     return true;
                 case R.id.nav_setting:
+                    transaction.replace(R.id.nav_fragment,new Setting(),"setting").commit();
                     return true;
             }
 
@@ -203,7 +212,7 @@ public class TabActivity extends AppCompatActivity implements OnMapReadyCallback
 
         Log.d("TabActivity", " " + test.getId());
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(center));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(testMarker, 10));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(testMarker, 13));
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
